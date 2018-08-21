@@ -1,3 +1,3 @@
 # Dynamic-Hashing
 
-Implementation of Dynamic Hashing in c++. And Chosed the LSB for comparison. 
+Implementation of Dynamic Hashing in c++. And Chose the LSB for comparison. 
