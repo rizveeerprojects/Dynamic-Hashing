@@ -219,13 +219,33 @@ void print_function(){
 	return;
 }
 
+bool search(Key_Type object){
+	int rem = hash_function(object);
+	int row = rem>>(number_of_bit-global_bit);
+	struct Bucket* target = bucket_address_table[row];
+	while(true){
+		for(int i=0;i<(int)target->key.size();i++){
+			if(target->key[i].id == object.id) {
+				return true;
+			}
+		}
+		if(target->next_bucket != NULL) {
+			target=target->next_bucket;
+		}
+		else{
+			return false;
+		}
+	}
+}
+
 //menu function
 void menu(){
 	Key_Type object;
 	while(1){
 		cout<<"Press 1 to input number"<<endl;
 		cout<<"Press 2 to print dynamic hasing table "<<endl;
-		cout<<"Press 3 to exit code"<<endl;
+		cout<<"Press 3 to search key"<<endl;
+		cout<<"Press 4 to exit code"<<endl;
 		int choice;
 		scanf("%d",&choice);
 		if(choice == 1) {
@@ -239,6 +259,19 @@ void menu(){
 			print_function();
 		}
 		else if(choice == 3) {
+			cout<<"Give search key " << endl;
+			int number;
+			cin>>number;
+			object.id = number;
+			bool ok=search(object);
+			if(ok==true) {
+				cout<<"Found"<<endl;
+			}
+			else{
+				cout<<"Not found"<<endl;
+			}
+		}
+		else if(choice == 4) {
 			break;
 		}
 	}
